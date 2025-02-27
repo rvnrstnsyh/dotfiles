@@ -1,6 +1,14 @@
 ;; ~/.emacs.d/modules/ui.el
 ;; User interface configuration.
 
+;; Default cursor.
+(blink-cursor-mode 1)             ;; Enable blinking cursor.
+(setq blink-cursor-blinks 0)      ;; 0 means blink indefinitely.
+(setq blink-cursor-delay 0.75)    ;; Use the default delay (0.75 seconds).
+(setq blink-cursor-interval 0.5)  ;; Set blink interval to 0.5 seconds.
+(set-default 'cursor-type 'bar)
+(add-hook 'after-init-hook (lambda () (set-cursor-color "#ADFF2F")))
+
 ;; Load and configure theme.
 (use-package doom-themes
   :ensure t

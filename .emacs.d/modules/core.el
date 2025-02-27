@@ -22,6 +22,20 @@
   (setenv "PATH" (concat (getenv "PATH") ":" (convert-standard-path "/usr/local/bin")))
   (cl-pushnew (convert-standard-path "/usr/local/bin") exec-path :test 'equal)))
 
+;; Default coding system.
+(prefer-coding-system 'utf-8-unix)
+(set-default-coding-systems 'utf-8-unix)
+(set-terminal-coding-system 'utf-8-unix)
+(set-keyboard-coding-system 'utf-8-unix)
+(set-selection-coding-system 'utf-8-unix)
+(setq-default buffer-file-coding-system 'utf-8-unix)
+;; Default read and write coding system.
+(setq coding-system-for-read 'utf-8-unix)
+(setq coding-system-for-write 'utf-8-unix)
+(setq file-name-coding-system 'utf-8-unix)
+;; Default scratch message.
+(setq initial-scratch-message ";; -*- mode: emacs-lisp; lexical-binding: t -*-\n")
+
 ;; Miscellaneous Settings.
 (setq-default
  inhibit-splash-screen t                              ;; Disable splash screen.
