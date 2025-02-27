@@ -1,13 +1,18 @@
 ;; ~/.emacs.d/modules/dev/common.el
-;; Common development settings
+;; Common development settings.
 
-;; File associations for various modes
-(add-to-list 'auto-mode-alist '("\\.[cm]?js$" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.[cm]?ts$" . typescript-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tsx?$" . web-mode))
+;; File associations for various modes.
+(use-package js2-mode
+  :ensure t
+  :mode ("\\.[cm]?js$" . js2-mode))
 
-;; Eglot configuration
-(require 'eglot)
+(use-package typescript-mode
+  :ensure t
+  :mode ("\\.[cm]?ts$" . typescript-mode))
+
+(use-package web-mode
+  :ensure t
+  :mode ("\\.jsx?$" . web-mode)
+  :mode ("\\.tsx?$" . web-mode))
 
 (provide 'common)

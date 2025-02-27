@@ -1,21 +1,27 @@
 ;; ~/.emacs.d/modules/ui.el
-;; User interface configuration
+;; User interface configuration.
 
-;; Load Theme
-(require 'doom-themes)
-(load-theme 'doom-tokyo-night t)
+;; Load and configure theme.
+(use-package doom-themes
+  :ensure t
+  :config
+  (load-theme 'doom-tokyo-night t))
 
-;; UI Tweaks
-(menu-bar-mode 0)    ;; Disable menu bar
-(tool-bar-mode 0)    ;; Disable tool bar
-(scroll-bar-mode 0)  ;; Disable scroll bar
+;; Enable Ivy and Counsel for better completion.
+(use-package ivy
+  :ensure t
+  :init (ivy-mode 1))
 
-;; Enable line numbers for Emacs 26+
-(when (version<= "26.0.50" emacs-version)
-  (global-display-line-numbers-mode))
+(use-package counsel
+  :ensure t
+  :after ivy
+  :init (counsel-mode 1))
 
-;; Enable Ivy for enhanced completion
-(ivy-mode 1)
-(counsel-mode 1)
+;; Disable unnecessary UI elements.
+(dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
+  (when (fboundp mode) (funcall mode 0)))
+
+;; Enable line numbers for Emacs >= 26.
+(when (>= emacs-major-version 26) (global-display-line-numbers-mode))
 
 (provide 'ui)

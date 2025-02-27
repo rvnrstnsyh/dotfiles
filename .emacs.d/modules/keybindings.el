@@ -1,25 +1,40 @@
 ;; ~/.emacs.d/modules/keybindings.el
-;; Global keybindings configuration
+;; Global keybindings configuration.
 
-;; Keybindings for Ivy and Counsel
-(global-set-key (kbd "C-s") 'swiper)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "C-c M-x") 'execute-extended-command)
+(use-package ivy
+  :ensure t
+  :bind (("C-s" . swiper)))
+
+(use-package lsp-mode
+  :ensure t
+  :bind
+    (:map lsp-mode-map
+      ("C-c l d" . lsp-describe-session)
+      ("C-c l r" . lsp-restart-workspace)
+      ("C-c l q" . lsp-shutdown-workspace)
+      ("C-c l f" . lsp-format-buffer)
+      ("C-c l a" . lsp-execute-code-action)))
+
+(use-package counsel
+  :ensure t
+  :bind (("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)
+         ("C-c M-x" . execute-extended-command)))
 
 ;; Multiple Cursors Keybindings
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(use-package multiple-cursors
+  :ensure t
+  :bind (("C-S-c C-S-c" . mc/edit-lines)
+         ("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-c C-<" . mc/mark-all-like-this)))
 
-;; Editing Enhancement Keybindings
-(global-set-key (kbd "S-<return>") (lambda () (interactive) (end-of-line) (newline)))
-(global-set-key (kbd "C-<return>") (lambda () (interactive) (end-of-line) (newline-and-indent)))
-(global-set-key (kbd "C-S-<return>") (lambda () (interactive) (beginning-of-line) (open-line 1) (indent-for-tab-command)))
-(with-eval-after-load 'editing
-  (global-set-key (kbd "M-<up>") 'rc/move-line-up)
-  (global-set-key (kbd "M-<down>") 'rc/move-line-down)
-  (global-set-key (kbd "C-,") 'rc/duplicate-line))
+(global-set-key (kbd "S-<return>") 'rc/newline-at-end)
+(global-set-key (kbd "C-<return>") 'rc/newline-and-indent)
+(global-set-key (kbd "C-S-<return>") 'rc/open-line-above)
+(global-set-key (kbd "M-<up>") 'rc/move-line-up)
+(global-set-key (kbd "M-<down>") 'rc/move-line-down)
+(global-set-key (kbd "C-,") 'rc/duplicate-line)
+(global-set-key (kbd "C-.") 'rc/duplicate-line-sticky-cursor)
 
 (provide 'keybindings)

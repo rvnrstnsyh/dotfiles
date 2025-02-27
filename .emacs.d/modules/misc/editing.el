@@ -1,32 +1,55 @@
 ;; ~/.emacs.d/modules/editing.el
-;; Text editing enhancements
+;; Text editing enhancements.
 
-;; Move lines up/down
+(defun rc/newline-at-end () "Move to end of line and insert a newline."
+  (interactive)
+  (end-of-line)
+  (newline))
+
+(defun rc/newline-and-indent () "Move to end of line, insert a newline, and indent."
+  (interactive)
+  (end-of-line)
+  (newline-and-indent))
+
+(defun rc/open-line-above () "Open a new line above the current line and indent."
+  (interactive)
+  (beginning-of-line)
+  (open-line 1)
+  (indent-for-tab-command))
+
+(defun rc/move-line (direction) "Move the current line up or down based on DIRECTION ('up or 'down)."
+  (let ((col (current-column)))
+    (if (eq direction 'up)
+        (progn (transpose-lines 1) (previous-line 2))
+      (progn (next-line 1) (transpose-lines 1) (previous-line 1)))
+    (move-to-column col)))
+
 (defun rc/move-line-up () "Move the current line up."
   (interactive)
-  (let ((col (current-column)))
-    (transpose-lines 1)
-    (previous-line 2)
-    (move-to-column col)))
+  (rc/move-line 'up))
 
 (defun rc/move-line-down () "Move the current line down."
   (interactive)
-  (let ((col (current-column)))
-    (next-line 1)
-    (transpose-lines 1)
-    (previous-line 1)
-    (move-to-column col)))
+  (rc/move-line 'down))
 
-;; Duplicate line
-(defun rc/duplicate-line () "Duplicate current line."
+(defun rc/duplicate-line () "Duplicate current line and move cursor to the duplicated line."
   (interactive)
-  (let ((column (- (point) (point-at-bol)))
-        (line (let ((s (thing-at-point 'line t)))
-                (if s (string-remove-suffix "\n" s) ""))))
+  (let ((column (current-column))
+        (line (string-trim-right (thing-at-point 'line t))))
     (move-end-of-line 1)
     (newline)
     (insert line)
-    (move-beginning-of-line 1)
-    (forward-char column)))
+    (move-to-column column)))
+
+(defun rc/duplicate-line-sticky-cursor () "Duplicate current line with sticky cursor."
+  (interactive)
+  (save-excursion
+    (let ((column (current-column))
+          (line (string-trim-right (thing-at-point 'line t))))
+      (move-end-of-line 1)
+      (push-mark)
+      (newline)
+      (insert line)
+      (move-to-column column))))
 
 (provide 'editing)
