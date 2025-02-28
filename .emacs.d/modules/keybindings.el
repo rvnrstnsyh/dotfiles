@@ -40,8 +40,8 @@
 (global-set-key (kbd "C-S-<return>") 'rc/open-line-above)
 (global-set-key (kbd "M-<up>") 'rc/move-line-up)
 (global-set-key (kbd "M-<down>") 'rc/move-line-down)
-(global-set-key (kbd "C-,") 'rc/duplicate-line)
-(global-set-key (kbd "C-.") 'rc/duplicate-line-sticky-cursor)
+(global-set-key (kbd "C-,") 'rc/duplicate-line-or-region)
+(global-set-key (kbd "C-.") 'rc/duplicate-line-or-region-sticky-cursor)
 
 (provide 'keybindings)
 

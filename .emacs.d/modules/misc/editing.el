@@ -37,25 +37,38 @@
   (interactive)
   (rc/move-line 'down))
 
-(defun rc/duplicate-line () "Duplicate current line and move cursor to the duplicated line."
+(defun rc/duplicate-line-or-region () "Duplicate the current line or the selected region."
   (interactive)
-  (let ((column (current-column))
-        (line (string-trim-right (thing-at-point 'line t))))
-    (move-end-of-line 1)
-    (newline)
-    (insert line)
+  (let ((column (current-column)))
+    (if (use-region-p)
+        (let* ((beg (region-beginning))
+               (end (region-end))
+               (region-text (buffer-substring-no-properties beg end)))
+          (goto-char end)
+          (newline)
+          (insert region-text))
+      (let ((line (string-trim-right (thing-at-point 'line t))))
+        (move-end-of-line 1)
+        (newline)
+        (insert line)))
     (move-to-column column)))
 
-(defun rc/duplicate-line-sticky-cursor () "Duplicate current line with sticky cursor."
+(defun rc/duplicate-line-or-region-sticky-cursor () "Duplicate the current line or selected region while keeping the cursor position."
   (interactive)
-  (save-excursion
-    (let ((column (current-column))
-          (line (string-trim-right (thing-at-point 'line t))))
-      (move-end-of-line 1)
-      (push-mark)
-      (newline)
-      (insert line)
-      (move-to-column column))))
+  (let ((column (current-column)))
+    (save-excursion
+      (if (use-region-p)
+          (let* ((beg (region-beginning))
+                 (end (region-end))
+                 (region-text (buffer-substring-no-properties beg end)))
+            (goto-char end)
+            (newline)
+            (insert region-text))
+        (let ((line (string-trim-right (thing-at-point 'line t))))
+          (move-end-of-line 1)
+          (newline)
+          (insert line))))
+    (move-to-column column)))
 
 (provide 'editing)
 
