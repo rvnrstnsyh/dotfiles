@@ -1,5 +1,10 @@
-;; ~/.emacs.d/modules/keybindings.el
-;; Global keybindings configuration.
+;;; keybindings.el --- Global keybindings configuration -*- lexical-binding: t; -*-
+
+;;; Commentary:
+;; This module defines global keybindings for commonly used actions, including
+;; Ivy, LSP, Counsel, and multiple cursors.
+
+;;; Code:
 
 (use-package ivy
   :ensure t
@@ -8,12 +13,12 @@
 (use-package lsp-mode
   :ensure t
   :bind
-    (:map lsp-mode-map
-      ("C-c l d" . lsp-describe-session)
-      ("C-c l r" . lsp-restart-workspace)
-      ("C-c l q" . lsp-shutdown-workspace)
-      ("C-c l f" . lsp-format-buffer)
-      ("C-c l a" . lsp-execute-code-action)))
+  (:map lsp-mode-map
+        ("C-c l d" . lsp-describe-session)
+        ("C-c l r" . lsp-restart-workspace)
+        ("C-c l q" . lsp-shutdown-workspace)
+        ("C-c l f" . lsp-format-buffer)
+        ("C-c l a" . lsp-execute-code-action)))
 
 (use-package counsel
   :ensure t
@@ -29,6 +34,7 @@
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C-<" . mc/mark-all-like-this)))
 
+(global-set-key [backtab] 'other-window)
 (global-set-key (kbd "S-<return>") 'rc/newline-at-end)
 (global-set-key (kbd "C-<return>") 'rc/newline-and-indent)
 (global-set-key (kbd "C-S-<return>") 'rc/open-line-above)
@@ -38,3 +44,5 @@
 (global-set-key (kbd "C-.") 'rc/duplicate-line-sticky-cursor)
 
 (provide 'keybindings)
+
+;;; keybindings.el ends here

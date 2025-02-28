@@ -1,5 +1,10 @@
-;; ~/.emacs.d/modules/editing.el
-;; Text editing enhancements.
+;;; editing.el --- Text editing enhancements -*- lexical-binding: t; -*-
+
+;;; Commentary:
+;; This module provides enhancements for text editing, including functions
+;; for inserting newlines, moving lines, and duplicating lines.
+
+;;; Code:
 
 (defun rc/newline-at-end () "Move to end of line and insert a newline."
   (interactive)
@@ -17,11 +22,11 @@
   (open-line 1)
   (indent-for-tab-command))
 
-(defun rc/move-line (direction) "Move the current line up or down based on DIRECTION ('up or 'down)."
+(defun rc/move-line (direction) "Move the current line up or down based on DIRECTION (\='up or \='down)."
   (let ((col (current-column)))
     (if (eq direction 'up)
-        (progn (transpose-lines 1) (previous-line 2))
-      (progn (next-line 1) (transpose-lines 1) (previous-line 1)))
+        (progn (transpose-lines 1) (forward-line -2))
+      (progn (forward-line 1) (transpose-lines 1) (forward-line -1)))
     (move-to-column col)))
 
 (defun rc/move-line-up () "Move the current line up."
@@ -53,3 +58,5 @@
       (move-to-column column))))
 
 (provide 'editing)
+
+;;; editing.el ends here

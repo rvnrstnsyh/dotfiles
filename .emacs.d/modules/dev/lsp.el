@@ -1,5 +1,11 @@
-;; ~/.emacs.d/modules/dev/lsp.el
-;; General LSP configuration for multiple programming languages.
+;;; lsp.el --- Global LSP configuration for Emacs -*- lexical-binding: t; -*-
+
+;;; Commentary:
+;; This module configures LSP support for multiple programming languages in Emacs.
+;; It includes general performance optimizations, UI enhancements, and automatic
+;; detection for specific language servers (e.g., Deno for JavaScript/TypeScript).
+
+;;; Code:
 
 (require 'lsp-mode)
 
@@ -18,11 +24,11 @@
         lsp-idle-delay 0.5
         lsp-log-io nil
         lsp-headerline-breadcrumb-enable nil
-        ;; Performance.
+        ;; Performance optimizations
         lsp-enable-file-watchers nil
         lsp-enable-folding nil
         lsp-enable-on-type-formatting nil
-        read-process-output-max (* 1024 1024))) ;; 1 MB.
+        read-process-output-max (* 1024 1024))) ;; 1 MB
 
 ;; LSP UI configuration.
 (use-package lsp-ui
@@ -47,8 +53,7 @@
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
 
 ;; Function to auto-detect Deno projects.
-(defun re/use-deno-lsp ()
-  "Enable Deno LSP if a deno.json or deno.jsonc file is found."
+(defun re/use-deno-lsp () "Enable Deno LSP if a deno.json or deno.jsonc file is found."
   (when (or (locate-dominating-file default-directory "deno.json")
             (locate-dominating-file default-directory "deno.jsonc"))
     (setq-local lsp-server 'deno)
@@ -87,3 +92,5 @@
               lsp-clients-typescript-server-args '("--stdio"))
 
 (provide 'lsp)
+
+;;; lsp.el ends here

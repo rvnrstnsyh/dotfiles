@@ -1,5 +1,10 @@
-;; ~/.emacs.d/modules/core.el
-;; Core Emacs settings.
+;;; core.el --- Core Emacs settings -*- lexical-binding: t; -*-
+
+;;; Commentary:
+;; This module contains core Emacs settings, including path configuration,
+;; default encoding, miscellaneous options, and essential packages.
+
+;;; Code:
 
 (require 'cl-lib)
 
@@ -47,7 +52,7 @@
 
 (setq confirm-kill-emacs                              ;; Confirm before exiting Emacs.
   (lambda (_)
-    (yes-or-no-p "Leave now? You need some rest.")))
+    (yes-or-no-p "You need some rest, leave now?")))
 
 ;; General Features.
 (show-paren-mode 1)                                   ;; Highlight matching parentheses.
@@ -67,3 +72,5 @@
   :init (global-flycheck-mode))                       ;; Enable Flycheck globally for real-time linting.
 
 (provide 'core)
+
+;;; core.el ends here

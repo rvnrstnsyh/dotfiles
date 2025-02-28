@@ -1,5 +1,10 @@
-;; ~/.emacs.d/modules/dev/common.el
-;; Common development settings.
+;;; common.el --- Common development settings -*- lexical-binding: t; -*-
+
+;;; Commentary:
+;; This module configures common development settings, including
+;; file associations for JavaScript, TypeScript, and web-related files.
+
+;;; Code:
 
 ;; File associations for various modes.
 (use-package js2-mode
@@ -16,3 +21,5 @@
   :mode ("\\.tsx?$" . web-mode))
 
 (provide 'common)
+
+;;; common.el ends here

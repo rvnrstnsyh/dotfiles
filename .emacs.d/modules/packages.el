@@ -1,5 +1,10 @@
-;; ~/.emacs.d/modules/packages.el
-;; Package management configuration.
+;;; packages.el --- Package management configuration -*- lexical-binding: t; -*-
+
+;;; Commentary:
+;; This module handles package management, including setting up repositories,
+;; ensuring required packages are installed, and managing package priorities.
+
+;;; Code:
 
 (require 'package)
 
@@ -25,7 +30,7 @@
     (setq rc/package-contents-refreshed t)
     (package-refresh-contents)))
 
-(defun rc/require-one-package (package) "Ensure PACKAGE is installed and efresh if necessary."
+(defun rc/require-one-package (package) "Ensure PACKAGE is installed and refresh if necessary."
   (when (not (package-installed-p package))
     (rc/package-refresh-contents-once)
     (package-install package)))
@@ -58,3 +63,5 @@
  'yaml-mode)
 
 (provide 'packages)
+
+;;; packages.el ends here

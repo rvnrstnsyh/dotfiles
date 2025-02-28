@@ -1,5 +1,9 @@
-;; ~/.emacs.d/init.el
-;; Main configuration file that loads all modules.
+;;; init.el --- Main configuration file -*- lexical-binding: t; -*-
+
+;;; Commentary:
+;; This is the main Emacs configuration file that loads all modules.
+
+;;; Code:
 
 ;; Set custom file
 (setq custom-file "~/.emacs.d/custom.el")
@@ -24,3 +28,6 @@
 
 ;; Load Custom File if it exists.
 (when (file-exists-p custom-file) (load-file custom-file))
+
+(provide 'init)
+;;; init.el ends here

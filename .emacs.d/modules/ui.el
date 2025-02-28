@@ -1,5 +1,10 @@
-;; ~/.emacs.d/modules/ui.el
-;; User interface configuration.
+;;; ui.el --- User interface configuration -*- lexical-binding: t; -*-
+
+;;; Commentary:
+;; This module configures the Emacs user interface, including cursor behavior,
+;; themes, completion frameworks, and UI elements.
+
+;;; Code:
 
 ;; Default cursor.
 (blink-cursor-mode 1)             ;; Enable blinking cursor.
@@ -33,3 +38,5 @@
 (when (>= emacs-major-version 26) (global-display-line-numbers-mode))
 
 (provide 'ui)
+
+;;; ui.el ends here
