@@ -6,6 +6,9 @@
 
 ;;; Code:
 
+;; Window.
+(set-fringe-style '(0 . 0))       ;; Fringe (Left 0px . Right 0px).
+
 ;; Default cursor.
 (blink-cursor-mode 1)             ;; Enable blinking cursor.
 (setq blink-cursor-blinks 0)      ;; 0 means blink indefinitely.
@@ -36,6 +39,16 @@
 
 ;; Enable line numbers for Emacs >= 26.
 (when (>= emacs-major-version 26) (global-display-line-numbers-mode))
+
+;; Git Gutter default sign and color.
+(setq git-gutter:added-sign    " +")
+(setq git-gutter:modified-sign " ~")
+(setq git-gutter:deleted-sign  " -")
+
+(custom-set-faces
+ '(git-gutter:added    ((t (:weight bold :foreground "#ADFF2F"))))   ;; Added/new line.
+ '(git-gutter:modified ((t (:weight bold :foreground "#FFFF00"))))   ;; Modified/edited line.
+ '(git-gutter:deleted  ((t (:weight bold :foreground "#FF0000")))))  ;; Deleted/removed line.
 
 (provide 'ui)
 

@@ -71,6 +71,10 @@
   :ensure t
   :init (global-flycheck-mode))                       ;; Enable Flycheck globally for real-time linting.
 
+;; Git Gutter configurations.
+(global-git-gutter-mode t)
+(setq git-gutter:update-interval 5)
+
 (provide 'core)
 
 ;;; core.el ends here

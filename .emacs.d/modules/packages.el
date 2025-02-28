@@ -47,11 +47,13 @@
  'dockerfile-mode
  'doom-themes
  'flycheck
+ 'git-gutter
  'ivy
  'js2-mode
  'less-css-mode
  'lsp-mode
  'lsp-ui
+ 'magit
  'markdown-mode
  'multiple-cursors
  'nginx-mode
