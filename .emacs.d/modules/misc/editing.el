@@ -6,6 +6,13 @@
 
 ;;; Code:
 
+(defun rc/toggle-comment () "Toggle comment on the current line or selected region."
+  (interactive)
+  (let ((beg (if (use-region-p) (region-beginning) (line-beginning-position)))
+        (end (if (use-region-p) (region-end) (line-end-position))))
+    (comment-or-uncomment-region beg end)
+    (forward-line)))
+
 (defun rc/newline-at-end () "Move to end of line and insert a newline."
   (interactive)
   (end-of-line)

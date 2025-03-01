@@ -24,11 +24,11 @@
         lsp-idle-delay 0.5
         lsp-log-io nil
         lsp-headerline-breadcrumb-enable nil
-        ;; Performance optimizations
+        ;; Performance optimizations.
         lsp-enable-file-watchers nil
         lsp-enable-folding nil
         lsp-enable-on-type-formatting nil
-        read-process-output-max (* 1024 1024))) ;; 1 MB
+        read-process-output-max (* 1024 1024))) ;; 1 MB.
 
 ;; LSP UI configuration.
 (use-package lsp-ui

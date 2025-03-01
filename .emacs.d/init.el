@@ -5,6 +5,8 @@
 
 ;;; Code:
 
+(defconst emacs-start-time (current-time))
+
 ;; Set custom file
 (setq custom-file "~/.emacs.d/custom.el")
 
@@ -29,5 +31,7 @@
 ;; Load Custom File if it exists.
 (when (file-exists-p custom-file) (load-file custom-file))
 
-(provide 'init)
+(let ((elapsed (float-time (time-subtract (current-time) emacs-start-time))))
+  (message "Modules loaded in %.3fs" elapsed))
+
 ;;; init.el ends here

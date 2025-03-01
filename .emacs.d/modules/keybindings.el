@@ -35,6 +35,7 @@
          ("C-c C-<" . mc/mark-all-like-this)))
 
 (global-set-key [backtab] 'other-window)
+(global-set-key (kbd "M-;") 'rc/toggle-comment)
 (global-set-key (kbd "S-<return>") 'rc/newline-at-end)
 (global-set-key (kbd "C-<return>") 'rc/newline-and-indent)
 (global-set-key (kbd "C-S-<return>") 'rc/open-line-above)
