@@ -35,14 +35,14 @@
          ("C-c C-<" . mc/mark-all-like-this)))
 
 (global-set-key [backtab] 'other-window)
-(global-set-key (kbd "M-;") 'rc/toggle-comment)
-(global-set-key (kbd "S-<return>") 'rc/newline-at-end)
-(global-set-key (kbd "C-<return>") 'rc/newline-and-indent)
-(global-set-key (kbd "C-S-<return>") 'rc/open-line-above)
-(global-set-key (kbd "M-<up>") 'rc/move-line-up)
-(global-set-key (kbd "M-<down>") 'rc/move-line-down)
-(global-set-key (kbd "C-,") 'rc/duplicate-line-or-region)
-(global-set-key (kbd "C-.") 'rc/duplicate-line-or-region-sticky-cursor)
+(global-set-key (kbd "M-;") 're/toggle-comment)
+(global-set-key (kbd "S-<return>") 're/newline-at-end)
+(global-set-key (kbd "C-<return>") 're/newline-and-indent)
+(global-set-key (kbd "C-S-<return>") 're/open-line-above)
+(global-set-key (kbd "M-<up>") 're/move-line-up)
+(global-set-key (kbd "M-<down>") 're/move-line-down)
+(global-set-key (kbd "C-,") 're/duplicate-line-or-region)
+(global-set-key (kbd "C-.") 're/duplicate-line-or-region-sticky-cursor)
 
 (provide 'keybindings)
 

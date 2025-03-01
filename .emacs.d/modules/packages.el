@@ -23,23 +23,23 @@
         ("elpa" . 1)))  ;; Lowest priority for ELPA.
 
 ;; Refresh package list only when necessary.
-(defvar rc/package-contents-refreshed nil)
+(defvar re/package-contents-refreshed nil)
 
-(defun rc/package-refresh-contents-once () "Refresh package contents once per session."
-  (unless rc/package-contents-refreshed
-    (setq rc/package-contents-refreshed t)
+(defun re/package-refresh-contents-once () "Refresh package contents once per session."
+  (unless re/package-contents-refreshed
+    (setq re/package-contents-refreshed t)
     (package-refresh-contents)))
 
-(defun rc/require-one-package (package) "Ensure PACKAGE is installed and refresh if necessary."
+(defun re/require-one-package (package) "Ensure PACKAGE is installed and refresh if necessary."
   (when (not (package-installed-p package))
-    (rc/package-refresh-contents-once)
+    (re/package-refresh-contents-once)
     (package-install package)))
 
-(defun rc/require (&rest packages) "Ensure all PACKAGES are installed."
-  (cl-loop for package in packages do (rc/require-one-package package)))
+(defun re/require (&rest packages) "Ensure all PACKAGES are installed."
+  (cl-loop for package in packages do (re/require-one-package package)))
 
 ;; Automatically install essential packages.
-(rc/require
+(re/require
  'company
  'company-box
  'counsel
