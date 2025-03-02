@@ -42,6 +42,7 @@
 (re/require
  'company
  'company-box
+ 'context-transient
  'counsel
  'dash
  'dockerfile-mode

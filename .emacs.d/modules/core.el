@@ -71,6 +71,26 @@
   :ensure t
   :init (global-flycheck-mode))                       ;; Enable Flycheck globally for real-time linting.
 
+(use-package context-transient
+  :ensure t
+  :defer nil
+  :bind ("C-!" . context-transient))
+
+(context-transient-define dev-tools
+  :doc "Development Tools"
+  :context (lambda ()
+             (when (or (locate-dominating-file default-directory "deno.json")
+                       (locate-dominating-file default-directory "deno.jsonc")
+                       (locate-dominating-file default-directory "package.json"))
+             'dev-tools))
+  :menu
+  [["Node Scripts"
+    ("n" "npm run dev"
+     (lambda () (interactive) (compile "npm run dev")))]
+   ["Deno Tasks"
+    ("d" "deno task dev"
+     (lambda () (interactive) (compile "deno task dev")))]])
+
 ;; Git Gutter configurations.
 (global-git-gutter-mode t)
 (setq git-gutter:update-interval 5)
