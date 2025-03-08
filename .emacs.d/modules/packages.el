@@ -45,6 +45,7 @@
  'context-transient
  'counsel
  'dash
+ 'disable-mouse
  'dockerfile-mode
  'doom-themes
  'flycheck

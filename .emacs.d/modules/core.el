@@ -50,6 +50,10 @@
  compilation-scroll-output t                          ;; Automatically scroll compilation output.
  visible-bell (eq system-type 'windows-nt))           ;; Use visible bell only on Windows.
 
+;; Prevent mouse usage.
+(require 'disable-mouse)
+(global-disable-mouse-mode)
+
 (setq confirm-kill-emacs                              ;; Confirm before exiting Emacs.
   (lambda (_)
     (yes-or-no-p "You need some rest, leave now?")))
